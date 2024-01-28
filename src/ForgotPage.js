@@ -16,7 +16,7 @@ export default function ForgotPage({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Pressable style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: 85}} onPress={() => navigation.goBack()}>
+                <Pressable style={styles.back} onPress={() => navigation.goBack()}>
                     <BackBtn/>
                 </Pressable>
                 {result && (

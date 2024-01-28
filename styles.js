@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     header: {
         position: 'absolute',
-        top: 0,
+        top: 30,
         lef: 0,
         width: '100%',
         display: 'flex',
@@ -76,6 +76,14 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: vw(16),
+    },
+    back: {
+        top: 12,
+        display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'flex-start', 
+        justifyContent: 'center', 
+        height: 85
     }
 });
 
