@@ -36,7 +36,7 @@ export default function UpgradePage({ navigation }) {
                     placeholder={'License key'}
                     onChangeText={setLicense}
                 />
-                <CustomButton title="Upgrade" onPress={() => upgrade(username, license, setLoading, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Upgrade" onPress={() => upgrade(username, license, setLoading, setResult, setResultMessage, navigation)} loading={loading} />
             </View>
         </View>
     );
@@ -52,7 +52,7 @@ const upgrade = async (username, license, setLoading, setResult, setResultMessag
     );
 
     await keyAuthApp.Initialize();
-    
+
     setLoading(true);
 
     try {

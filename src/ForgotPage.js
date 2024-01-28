@@ -36,7 +36,7 @@ export default function ForgotPage({ navigation }) {
                     placeholder={'Email'}
                     onChangeText={setEmail}
                 />
-                <CustomButton title="Restore" onPress={() => restore(username, email, setLoading, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Restore" onPress={() => restore(username, email, setLoading, setResult, setResultMessage, navigation)} loading={loading} />
             </View>
         </View>
     );

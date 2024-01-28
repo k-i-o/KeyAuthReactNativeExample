@@ -57,7 +57,7 @@ export default function RegisterPage({ navigation }) {
                     error={passwordError1}
                     secureTextEntry
                 />
-                <CustomButton title="Register" onPress={() => register(username, email, license, password, password1, setPasswordError, setPasswordError1, setLoading, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Register" onPress={() => register(username, email, license, password, password1, setPasswordError, setPasswordError1, setLoading, setResult, setResultMessage, navigation)} loading={loading} />
             </View>
         </View>
     );
