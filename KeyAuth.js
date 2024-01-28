@@ -5,7 +5,7 @@ import axios from 'axios';
 import os from 'os';
 
 //* Import FS *//
-import fs from 'fs';
+// import fs from 'fs';
 
 import Constants from 'expo-constants';
 import * as Crypto from 'expo-crypto';
@@ -317,55 +317,55 @@ class KeyAuth {
     resolve(Json.message)
   })
 
-  /**
-     * KeyAuth acts as proxy and downlods the file in a secure way
-     * @Param {string} [fileId] - File ID
-     * @Param {string} [path] - Path to save the file
-     * @Param {boolean} [execute] - Execute the file after download - Windows Only Requires path for file!
-     * returns {byte} - Returns The bytes of the download file
-    **/
-  file = (fileId, path = null, execute = false) => new Promise(async (resolve) => {
-    this.check_initialize()
+  // /**
+  //    * KeyAuth acts as proxy and downlods the file in a secure way
+  //    * @Param {string} [fileId] - File ID
+  //    * @Param {string} [path] - Path to save the file
+  //    * @Param {boolean} [execute] - Execute the file after download - Windows Only Requires path for file!
+  //    * returns {byte} - Returns The bytes of the download file
+  //   **/
+  // file = (fileId, path = null, execute = false) => new Promise(async (resolve) => {
+  //   this.check_initialize()
 
-    const post_data = {
-      type: 'file',
-      fileid: fileId.toString(),
-      sessionid: this.sessionid,
-      name: this.name,
-      ownerid: this.ownerId
-    }
+  //   const post_data = {
+  //     type: 'file',
+  //     fileid: fileId.toString(),
+  //     sessionid: this.sessionid,
+  //     name: this.name,
+  //     ownerid: this.ownerId
+  //   }
 
-    const Json = await this.make_request(post_data)
+  //   const Json = await this.make_request(post_data)
 
-    this.Load_Response_Struct(Json)
-    if (Json.success && Json.success == true) {
+  //   this.Load_Response_Struct(Json)
+  //   if (Json.success && Json.success == true) {
 
-      if (path != null) {
-        var bytes = await this.strToByteArray(Json.contents);
-        fs.writeFile(path, bytes, async (err) => {
-          if (err) throw err;
+  //     if (path != null) {
+  //       var bytes = await this.strToByteArray(Json.contents);
+  //       fs.writeFile(path, bytes, async (err) => {
+  //         if (err) throw err;
 
-          if (execute) {
-            var exec = require('child_process').exec;
-            await exec(path, function (error, stdout, stderr) {
-              if (error) {
-                console.error(error);
-                return;
-              }
-            });
+  //         if (execute) {
+  //           var exec = require('child_process').exec;
+  //           await exec(path, function (error, stdout, stderr) {
+  //             if (error) {
+  //               console.error(error);
+  //               return;
+  //             }
+  //           });
 
-            return resolve(true);
-          } else {
-            return resolve(true);
-          }
-        });
-      } else {
-        return resolve(this.strToByteArray(Json.contents))
-      }
-    }
+  //           return resolve(true);
+  //         } else {
+  //           return resolve(true);
+  //         }
+  //       });
+  //     } else {
+  //       return resolve(this.strToByteArray(Json.contents))
+  //     }
+  //   }
 
-    resolve(Json.message)
-  })
+  //   resolve(Json.message)
+  // })
 
 
   /**

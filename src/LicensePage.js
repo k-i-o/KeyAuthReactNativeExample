@@ -8,6 +8,7 @@ import BackBtn from './icons/BackBtn';
 
 export default function LicensePage({ navigation }) {
     const [license, setLicense] = useState('');
+    const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(false);
     const [resultMessage, setResultMessage] = useState('');    
 
@@ -25,18 +26,18 @@ export default function LicensePage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
                 <CustomInput
                     placeholder={'License key'}
                     onChangeText={setLicense}
                 />
-                <CustomButton title="Upgrade" onPress={() => login(license, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Login" onPress={() => login(license, setLoading, setResult, setResultMessage, navigation)} loading={loading} />
             </View>
         </View>
     );
 }
 
-const login = async (license, setResult, setResultMessage, navigation) => {
+const login = async (license, setLoading, setResult, setResultMessage, navigation) => {
 
     const keyAuthApp = new KeyAuth(
         "ReactNativeExample", // Application Name
@@ -46,7 +47,8 @@ const login = async (license, setResult, setResultMessage, navigation) => {
     );
 
     await keyAuthApp.Initialize();
-      
+    setLoading(true);
+
     try {
         const result = await keyAuthApp.license(license);
         console.log(result);
@@ -58,5 +60,6 @@ const login = async (license, setResult, setResultMessage, navigation) => {
         setResult(true);
         setResultMessage(error);
     }
-    
+    setLoading(false);
+
 }

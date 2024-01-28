@@ -1,14 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 
 const styles = StyleSheet.create({
 
     container: {
         display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
         backgroundColor: 'rgb(10 10 14)',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '100%',
+        height: "100%",
     },
     wrapper: {
         backgroundColor: 'rgb(22 22 35)',
@@ -17,7 +20,7 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         justifyContent: 'center',
         padding: 25,
-        borderRadius: 8,
+        borderRadius: 15,
         width: '70%',
         gap: 30,
         color: 'white',
@@ -48,8 +51,9 @@ const styles = StyleSheet.create({
         width: '70%',
     },
     header: {
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
+        lef: 0,
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -68,6 +72,10 @@ const styles = StyleSheet.create({
         width: '85%',
         gap: 10,
         color: 'white',
+    },
+    image: {
+        width: '100%',
+        height: vw(16),
     }
 });
 

@@ -11,6 +11,7 @@ export default function ForgotPage({ navigation }) {
     const [email, setEmail] = useState('');
     const [result, setResult] = useState(false);
     const [resultMessage, setResultMessage] = useState('');    
+    const [loading, setLoading] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -26,7 +27,7 @@ export default function ForgotPage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
                 <CustomInput
                     placeholder={'Username'}
                     onChangeText={setUsername}
@@ -35,13 +36,13 @@ export default function ForgotPage({ navigation }) {
                     placeholder={'Email'}
                     onChangeText={setEmail}
                 />
-                <CustomButton title="Restore" onPress={() => restore(username, email, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Restore" onPress={() => restore(username, email, setLoading, setResult, setResultMessage, navigation)} />
             </View>
         </View>
     );
 }
 
-const restore = async (username, email, setResult, setResultMessage, navigation) => {
+const restore = async (username, email, setLoading, setResult, setResultMessage, navigation) => {
 
     const keyAuthApp = new KeyAuth(
         "ReactNativeExample", // Application Name
@@ -51,7 +52,8 @@ const restore = async (username, email, setResult, setResultMessage, navigation)
     );
 
     await keyAuthApp.Initialize();
-      
+    setLoading(true);
+
     try {
         const result = await keyAuthApp.forgot(username, email);
         console.log(result);
@@ -63,6 +65,7 @@ const restore = async (username, email, setResult, setResultMessage, navigation)
         setResult(true);
         setResultMessage(error);
     }
-    
+    setLoading(false);
+
 
 }

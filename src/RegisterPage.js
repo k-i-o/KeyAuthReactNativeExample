@@ -16,6 +16,7 @@ export default function RegisterPage({ navigation }) {
     const [passwordError1, setPasswordError1] = useState('');
     const [result, setResult] = useState(false);
     const [resultMessage, setResultMessage] = useState('');    
+    const [loading, setLoading] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -31,7 +32,7 @@ export default function RegisterPage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
                 <CustomInput
                     placeholder={'Username'}
                     onChangeText={setUsername}
@@ -56,13 +57,13 @@ export default function RegisterPage({ navigation }) {
                     error={passwordError1}
                     secureTextEntry
                 />
-                <CustomButton title="Register" onPress={() => register(username, email, license, password, password1, setPasswordError, setPasswordError1, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Register" onPress={() => register(username, email, license, password, password1, setPasswordError, setPasswordError1, setLoading, setResult, setResultMessage, navigation)} />
             </View>
         </View>
     );
 }
 
-const register = async (username, email, license, password, password1, setPasswordError, setPasswordError1, setResult, setResultMessage, navigation) => {
+const register = async (username, email, license, password, password1, setPasswordError, setPasswordError1, setLoading, setResult, setResultMessage, navigation) => {
     if (password.length < 6) { // Is an example, you can change this to your own password requirements
         setPasswordError('The password is to short');
         return;
@@ -85,7 +86,8 @@ const register = async (username, email, license, password, password1, setPasswo
     );
 
     await keyAuthApp.Initialize();
-      
+    setLoading(true);
+
     try {
         const result = await keyAuthApp.register(username, password, license, email);
         console.log(result);
@@ -97,5 +99,6 @@ const register = async (username, email, license, password, password1, setPasswo
         setResult(true);
         setResultMessage(error);
     }
-    
+    setLoading(false);
+
 }

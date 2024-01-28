@@ -15,7 +15,7 @@ export default function MenuPage({ navigation, route }) {
             </View>
         )}
         <View style={styles.wrapper}>
-            <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+            <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
             <View style={styles.buttonsContainer}>
                 <CustomButton title="Login" onPress={() => navigation.navigate('Login')} />
                 <CustomButton title="Register" onPress={() => navigation.navigate('Register')} />

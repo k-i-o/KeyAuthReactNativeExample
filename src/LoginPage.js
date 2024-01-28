@@ -10,6 +10,7 @@ export default function LoginPage({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(false);
     const [resultMessage, setResultMessage] = useState('');    
 
@@ -27,7 +28,7 @@ export default function LoginPage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
                 <CustomInput
                     placeholder={'Username'}
                     onChangeText={setUsername}
@@ -38,13 +39,13 @@ export default function LoginPage({ navigation }) {
                     error={passwordError}
                     secureTextEntry
                 />
-                <CustomButton title="Login" onPress={() => login(username, password, setPasswordError, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Login" onPress={() => login(username, password, setPasswordError, setLoading, setResult, setResultMessage, navigation)} loading={loading} />
             </View>
         </View>
     );
 }
 
-const login = async (username, password, setPasswordError, setResult, setResultMessage, navigation) => {
+const login = async (username, password, setPasswordError, setLoading, setResult, setResultMessage, navigation) => {
     if (password.length < 6) { // Is an example, you can change this to your own password requirements
         setPasswordError('The password is to short');
         return;
@@ -60,7 +61,8 @@ const login = async (username, password, setPasswordError, setResult, setResultM
     );
 
     await keyAuthApp.Initialize();
-      
+
+    setLoading(true);
     try {
         const result = await keyAuthApp.login(username, password);
         console.log(result);
@@ -72,6 +74,6 @@ const login = async (username, password, setPasswordError, setResult, setResultM
         setResult(true);
         setResultMessage(error);
     }
-    
+    setLoading(false);
 
 }

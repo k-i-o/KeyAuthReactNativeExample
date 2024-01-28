@@ -11,6 +11,7 @@ export default function UpgradePage({ navigation }) {
     const [license, setLicense] = useState('');
     const [result, setResult] = useState(false);
     const [resultMessage, setResultMessage] = useState('');    
+    const [loading, setLoading] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -26,7 +27,7 @@ export default function UpgradePage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={{width: "100%", height: 60}} />
+                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
                 <CustomInput
                     placeholder={'Username'}
                     onChangeText={setUsername}
@@ -35,13 +36,13 @@ export default function UpgradePage({ navigation }) {
                     placeholder={'License key'}
                     onChangeText={setLicense}
                 />
-                <CustomButton title="Upgrade" onPress={() => upgrade(username, license, setResult, setResultMessage, navigation)} />
+                <CustomButton title="Upgrade" onPress={() => upgrade(username, license, setLoading, setResult, setResultMessage, navigation)} />
             </View>
         </View>
     );
 }
 
-const upgrade = async (username, license, setResult, setResultMessage, navigation) => {
+const upgrade = async (username, license, setLoading, setResult, setResultMessage, navigation) => {
 
     const keyAuthApp = new KeyAuth(
         "ReactNativeExample", // Application Name
@@ -51,7 +52,9 @@ const upgrade = async (username, license, setResult, setResultMessage, navigatio
     );
 
     await keyAuthApp.Initialize();
-      
+    
+    setLoading(true);
+
     try {
         const result = await keyAuthApp.upgrade(username, license);
         console.log(result);
@@ -63,6 +66,6 @@ const upgrade = async (username, license, setResult, setResultMessage, navigatio
         setResult(true);
         setResultMessage(error);
     }
-    
+    setLoading(false);
 
 }

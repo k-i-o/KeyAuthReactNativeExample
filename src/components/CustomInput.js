@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     color: '#fff',
-    outlineStyle: 'none' 
+    // outlineStyle: 'none' // error from mobile
   },
   errorText: {
     marginTop: 5,
