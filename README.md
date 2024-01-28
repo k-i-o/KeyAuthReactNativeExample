@@ -25,10 +25,9 @@ await KeyAuthApp.Initialize();
 
 ##### **General Features**
 
-###### **Get Application Information**
-For each of these following functions, you can use a try/catch block to catch errors as login error
+NOTE: For each of these following functions, you can use a try/catch block to catch errors as login error
 
-Example:
+###### Example:
 ```js
     try {
         const result = await keyAuthApp.login(username, password);
