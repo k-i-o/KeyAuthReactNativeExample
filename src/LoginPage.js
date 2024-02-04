@@ -5,6 +5,7 @@ import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 import KeyAuth from '../KeyAuth';
 import BackBtn from './icons/BackBtn';
+import KeyauthBanner from '../assets/KeyauthBanner.png';
 
 export default function LoginPage({ navigation }) {
     const [username, setUsername] = useState('');
@@ -28,7 +29,7 @@ export default function LoginPage({ navigation }) {
                 )}
             </View>
             <View style={styles.wrapper}>
-                <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
+                <Image source={KeyauthBanner} style={styles.image} />
                 <CustomInput
                     placeholder={'Username'}
                     onChangeText={setUsername}

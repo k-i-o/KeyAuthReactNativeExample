@@ -10,7 +10,6 @@ const BackBtn = (props) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={2}
-    className="icon icon-tabler icon-tabler-chevron-left"
     {...props}
   >
     <Path stroke="none" d="M0 0h35v35H0z" />

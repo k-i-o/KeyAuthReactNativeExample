@@ -10,7 +10,6 @@ const EyeClose = (props) => (
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={2}
-    className="icon icon-tabler icon-tabler-eye-filled"
     {...props}
   >
     <Path stroke="none" d="M0 0h24v24H0z" />

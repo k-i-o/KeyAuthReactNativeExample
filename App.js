@@ -14,11 +14,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Menu" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Menu" component={MenuPage} />
-        <Stack.Screen name="Login" component={LoginPage} />
+        {/* <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
-        <Stack.Screen name="Upgrade" component={UpgradePage} />
+        <Stack.Screen name="Upgrade" component={UpgradePage} /> */}
         <Stack.Screen name="License" component={LicensePage} />
-        <Stack.Screen name="Forgot" component={ForgotPage} />
+        {/* <Stack.Screen name="Forgot" component={ForgotPage} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

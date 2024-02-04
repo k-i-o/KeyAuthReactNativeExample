@@ -1,6 +1,7 @@
 import { Image, Text, View } from 'react-native';
 import { styles } from '../styles';
 import CustomButton from './components/CustomButton';
+import KeyauthBanner from '../assets/KeyauthBanner.png';
 
 export default function MenuPage({ navigation, route }) {
     
@@ -15,7 +16,7 @@ export default function MenuPage({ navigation, route }) {
             </View>
         )}
         <View style={styles.wrapper}>
-            <Image source={require("../assets/KeyauthBanner.png")} style={styles.image} />
+            <Image source={KeyauthBanner} style={styles.image} />
             <View style={styles.buttonsContainer}>
                 <CustomButton title="Login" onPress={() => navigation.navigate('Login')} />
                 <CustomButton title="Register" onPress={() => navigation.navigate('Register')} />
